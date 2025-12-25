@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Budget Tracker - Pakistani Rupees (PKR)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1><i class="fas fa-star star-icon"></i> Pakistani Student <span class="pak-theme">Budget Tracker</span></h1>
+                    <p class="tagline">Track your hostel rent, food expenses, and pocket money in Pakistani Rupees (PKR)</p>
+                    <div class="currency-display">
+                        <i class="fas fa-flag"></i> Currency: Pakistani Rupees (₨)
+                    </div>
+                </div>
+                <div class="month-selector">
+                    <i class="fas fa-calendar-alt"></i>
+                    <select id="monthSelect">
+                        <option value="0">January 2024</option>
+                        <option value="1" selected>February 2024</option>
+                        <option value="2">March 2024</option>
+                        <option value="3">April 2024</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        
+        <div class="mobile-warning">
+            <i class="fas fa-mobile-alt"></i>
+            <span>For best experience, use this tracker on a larger screen or in landscape mode on mobile devices.</span>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card card-hostel">
+                <div class="flag-colors"></div>
+                <h3><i class="fas fa-home"></i> Hostel & Accommodation</h3>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Monthly Hostel Rent</span>
+                        <span class="budget-amount">15,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="hostel-progress" style="width: 100%; background-color: var(--pak-green);"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>Paid</span>
+                        <span>Due on 5th each month</span>
+                    </div>
+                </div>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Electricity & Water Bill</span>
+                        <span class="budget-amount">2,500</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="utilities-progress" style="width: 60%; background-color: #2E7D32;"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>₨1,500 spent</span>
+                        <span>₨1,000 remaining</span>
+                    </div>
+                </div>
+                <div class="savings-tip">
+                    <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Use energy-efficient appliances to reduce electricity bill in PKR.
+                </div>
+            </div>
+            
+            <div class="card card-food">
+                <div class="flag-colors"></div>
+                <h3><i class="fas fa-utensils"></i> Food & Dining</h3>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Mess Fee / Home Cooking</span>
+                        <span class="budget-amount">12,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="groceries-progress" style="width: 75%; background-color: var(--gold);"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>₨9,000 spent</span>
+                        <span>₨3,000 remaining</span>
+                    </div>
+                </div>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Eating Out / Dhaba</span>
+                        <span class="budget-amount">5,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="eatingout-progress" style="width: 50%; background-color: #FFC107;"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>₨2,500 spent</span>
+                        <span>₨2,500 remaining</span>
+                    </div>
+                </div>
+                <div class="savings-tip">
+                    <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Eating at university mess or cooking at home saves PKR compared to restaurants.
+                </div>
+            </div>
+            
+            <div class="card card-pocket">
+                <div class="flag-colors"></div>
+                <h3><i class="fas fa-wallet"></i> Pocket Money & Miscellaneous</h3>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Transportation (Rickshaw/Bus)</span>
+                        <span class="budget-amount">3,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="transport-progress" style="width: 70%; background-color: var(--accent);"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>₨2,100 spent</span>
+                        <span>₨900 remaining</span>
+                    </div>
+                </div>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Entertainment & Outings</span>
+                        <span class="budget-amount">4,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="entertainment-progress" style="width: 40%; background-color: #D4AF37;"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>₨1,600 spent</span>
+                        <span>₨2,400 remaining</span>
+                    </div>
+                </div>
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <span class="budget-title">Stationery & Books</span>
+                        <span class="budget-amount">2,500</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="misc-progress" style="width: 60%; background-color: #B8860B;"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span>₨1,500 spent</span>
+                        <span>₨1,000 remaining</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card chart-container">
+                <div class="flag-colors"></div>
+                <h3><i class="fas fa-chart-pie"></i> Budget Distribution (PKR)</h3>
+                <canvas id="budgetChart"></canvas>
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="color-indicator" style="background-color: var(--pak-green);"></span>
+                        Hostel & Rent
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-indicator" style="background-color: var(--gold);"></span>
+                        Food & Dining
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-indicator" style="background-color: var(--accent);"></span>
+                        Transportation
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-indicator" style="background-color: #2E7D32;"></span>
+                        Entertainment
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-indicator" style="background-color: #B8860B;"></span>
+                        Stationery
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="flag-colors"></div>
+            <h3><i class="fas fa-plus-circle"></i> Add New Expense (PKR)</h3>
+            <div class="controls-form">
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="expenseName">Expense Name</label>
+                        <input type="text" id="expenseName" placeholder="e.g., Rickshaw fare, Chai with friends, Book">
+                    </div>
+                    <div class="input-group">
+                        <label for="expenseAmount">Amount (₨)</label>
+                        <input type="number" id="expenseAmount" placeholder="e.g., 500">
+                    </div>
+                    <div class="input-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory">
+                            <option value="hostel">Hostel & Utilities</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="pocket">Pocket Money</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate">
+                    </div>
+                </div>
+                <button id="addExpenseBtn"><i class="fas fa-plus"></i> Add Expense in PKR</button>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card">
+                <h4>Total Monthly Budget</h4>
+                <div class="total-pkr" id="total-budget">41,500</div>
+                <p>For February 2024</p>
+            </div>
+            <div class="summary-card expenses">
+                <h4>Total Expenses</h4>
+                <div class="summary-value" id="total-expenses">16,200</div>
+                <p id="expense-percentage">39% of budget used</p>
+            </div>
+            <div class="summary-card balance">
+                <h4>Remaining Balance</h4>
+                <div class="summary-value" id="remaining-balance">25,300</div>
+                <p>Available for rest of month</p>
+            </div>
+        </div>
+        
+        <div class="history">
+            <h3><i class="fas fa-history"></i> Recent Expenses (PKR)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount (₨)</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTable">
+                    <!-- Expenses will be added here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <footer>
+            <p><i class="fas fa-rupee-sign"></i> <span class="paisa-symbol">₨</span> Pakistani Student Budget Tracker &copy; 2024 | Designed for Pakistani university students to manage expenses in PKR</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Typical student monthly budget range in Pakistan: ₨30,000 - ₨50,000</p>
+        </footer>
+    </div>
+      
+    <script src="index.js"></script>
+</body>
+</html>
